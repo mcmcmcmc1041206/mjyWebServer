@@ -23,7 +23,7 @@
 #include <stdarg.h>
 #include <errno.h>
 #include <sys/time.h>
-#include "locker.h"
+#include "Mutexlock.h"
 using namespace std;
 
 class mytimer;

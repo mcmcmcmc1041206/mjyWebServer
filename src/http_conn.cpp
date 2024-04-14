@@ -11,7 +11,7 @@ const char* error_500_title = "Internal Error";
 const char* error_500_form = "There was an unusual problem serving the requested file.\n";
 const char* doc_root = "/var/www/html";
 
-locker qlock;
+MutexLock qlock;
 priority_queue<mytimer*,deque<mytimer*>,timercmp> MyTimerQueue;
 
 int setnonblocking( int fd )

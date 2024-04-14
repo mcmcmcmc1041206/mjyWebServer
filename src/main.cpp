@@ -10,7 +10,7 @@
 #include <cassert>
 #include <sys/epoll.h>
 
-#include "locker.h"
+#include "Mutexlock.h"
 #include "threadpool.h"
 #include "http_conn.h"
 
@@ -19,7 +19,7 @@
 
 const int TIMER_TIME_OUT = 500;
 
-extern locker qlock;
+extern MutexLock qlock;
 extern priority_queue<mytimer*,deque<mytimer*>,timercmp> MyTimerQueue;
 extern int addfd( int epollfd, int fd, bool one_shot );
 extern int removefd( int epollfd, int fd );

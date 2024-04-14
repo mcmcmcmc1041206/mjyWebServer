@@ -3,7 +3,7 @@
 #include <assert.h>
 
 
-AsyncLogging::AsyncLogging(const std::string basename, int flushInterval = 2)
+AsyncLogging::AsyncLogging(const std::string basename, int flushInterval )
         :flushInterval_(flushInterval),
         running_(false),
         basename_(basename),
@@ -36,8 +36,6 @@ void AsyncLogging::append(const char* logline,int len)
         }
         else
         {
-            BufferPtr buffer = std::make_shared<Buffer>(new Buffer);
-            currentBuffer_ = std::move(buffer);
         }
         currentBuffer_->append(logline,len);
         cond_.notify();
@@ -48,7 +46,6 @@ void AsyncLogging::threadFunc()
 {
     latch_.countDown();
     assert(running_ == true);
-    latch_.countDown();
     LogFile output(basename_);
     BufferPtr newBuffer1(new Buffer);
     BufferPtr newBuffer2(new Buffer);

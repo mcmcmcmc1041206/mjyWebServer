@@ -13,7 +13,8 @@ static AsyncLogging *AsyncLogger_;
 
 void once_init()
 {
-    AsyncLogger_ = new AsyncLogging(std::string("/linya_web_server.log"));
+    AsyncLogger_ = new AsyncLogging(std::string("testlog.log"));
+    std::cout<<"create Async success"<<std::endl;
     AsyncLogger_->start();
 }
 

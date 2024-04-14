@@ -2,6 +2,7 @@
 
 #include "Mutexlock.h"
 #include "noncopyable.h"
+#include "FileUtil.h"
 #include <string>
 #include <memory>
 
@@ -23,5 +24,5 @@ private:
 
     int count_;
     MutexLock mutex_;
-    AppendFile file_;
+    AppendFile* file_;
 };

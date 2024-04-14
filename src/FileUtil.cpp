@@ -5,11 +5,13 @@
 #include <stdio.h>
 #include <sys/stat.h>
 #include <unistd.h>
+#include <iostream>
 
 AppendFile::AppendFile(std::string filename)
   : fp_(fopen(filename.c_str(), "ae"))
 {
-  setbuffer(fp_, buffer_, sizeof buffer_);
+    std::cout<<"create file"<<filename<<std::endl;
+    setbuffer(fp_, buffer_, sizeof buffer_);
 }
 
 AppendFile::~AppendFile()

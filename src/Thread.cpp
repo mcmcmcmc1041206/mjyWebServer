@@ -1,5 +1,6 @@
 #include "Thread.h"
 #include <sys/prctl.h>
+#include <unistd.h>
 #include <sys/syscall.h>
 #include <sys/types.h>
 #include <linux/unistd.h>
@@ -46,7 +47,7 @@ namespace CurrentThread
 
 pid_t gettid()
 {
-    return static_cast<pid_t>(::syscall(SYS_gettid));
+    return static_cast<pid_t>(syscall(SYS_gettid));
 }
 
 //在线程中保留name，tid数据
@@ -94,10 +95,10 @@ void* startThread(void* obj)
 void CurrentThread::cacheTid()
 {
     if (t_cachedTid == 0)
-  {
-    t_cachedTid = gettid();
-    t_tidStringLength = snprintf(t_tidString, sizeof t_tidString, "%5d ", t_cachedTid);
-  }
+    {
+        t_cachedTid = gettid();
+        t_tidStringLength = snprintf(t_tidString, sizeof t_tidString, "%5d ", t_cachedTid);
+    }
 }
 
 Thread::Thread(const ThreadFunc& func, const std::string& n)

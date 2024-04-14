@@ -5,7 +5,8 @@
 #include <cstdio>
 #include <exception>
 #include <pthread.h>
-#include "locker.h"
+#include "Mutexlock.h"
+#include "condition.h"
 
 template< typename T >
 class threadpool
@@ -24,7 +25,7 @@ private:
     int m_max_requests;
     pthread_t* m_threads;
     std::list< T* > m_workqueue;
-    locker m_queuelocker;
+    MutexLock m_queuelocker;
     sem m_queuestat;
     bool m_stop;
 };

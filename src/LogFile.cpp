@@ -1,4 +1,5 @@
 #include "LogFile.h"
+#include "FileUtil.h"
 
 LogFile::LogFile(const std::string& basename,int flushEveryN)
         :basename_(basename),
@@ -6,7 +7,7 @@ LogFile::LogFile(const std::string& basename,int flushEveryN)
         count_(0),
         mutex_()
 {
-    file_.reset(new AppendFile(basename));
+    file_ = new AppendFile(basename);
 }
 
 LogFile::~LogFile(){}

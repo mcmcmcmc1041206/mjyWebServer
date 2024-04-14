@@ -2,6 +2,7 @@
 #define LOCKER_H
 
 #include <exception>
+#include "noncopyable.h"
 #include <pthread.h>
 #include <semaphore.h>
 #include <errno.h>
@@ -35,7 +36,7 @@ private:
 };
 
 
-class Condition: noncopyable
+class Condition : noncopyable
 {
 public:
     explicit Condition(MutexLock &_mutex):
